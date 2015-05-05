@@ -1,0 +1,27 @@
+/*******************************************************************************
+*   Form
+*******************************************************************************/
+h2
+{
+	margin: 1em 0em 0em 0em;
+}
+form 
+{
+	margin: 0em;
+	padding: 0em;
+	
+}
+form .left
+{
+	min-width: 15em;
+	padding: 0.5em;
+	margin: 0.2em 0em 0em 0.5em;
+}
+form .right
+{
+	flex: 1;
+	margin: 0.2em 0em 0em 0.5em;
+	padding: 0.5em;
+	align-self: center;
+	align-self: flex-end;
+}

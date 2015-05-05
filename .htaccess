@@ -1,0 +1,40 @@
+###############################################################################
+# Main .htacces for pony-prediction-website
+###############################################################################
+
+# Options
+Options -Indexes
+
+# Home
+DirectoryIndex index.php?page=home
+
+# Rewrite
+
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteBase /
+
+# Internal Redirect Loop Protection
+RewriteCond %{ENV:REDIRECT_STATUS} 200
+RewriteRule ^ - [L]
+
+# Confirmation
+RewriteCond %{QUERY_STRING} ^page=confirmation&confirmation=(.*)$         
+RewriteRule ^index.php$ confirmation/%1? [R=301,NE,L]
+RewriteRule ^confirmation/(.*)$ index.php?page=confirmation&confirmation=$1 [L]
+
+# Errors
+RewriteCond %{QUERY_STRING} ^page=error&error=(.*)$
+RewriteRule ^index.php$ error/%1? [R=301,NE,L]
+RewriteRule ^error/([0-9]+)$ index.php?page=error&error=$1 [L]
+
+# Pages
+RewriteCond %{QUERY_STRING} ^page=(.*)$
+RewriteRule ^index.php$ %1? [R=301,NE,L]
+RewriteRule ^([\w-]+)$ index.php?page=$1 [L]
+
+ErrorDocument 404 /error/404
+ErrorDocument 403 /error/404
+
+RedirectMatch 404 \.git

@@ -1,0 +1,3 @@
+# Access
+Order Allow,Deny
+allow from all

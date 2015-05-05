@@ -1,0 +1,263 @@
+/*******************************************************************************
+*   General
+*******************************************************************************/
+*
+{
+    text-align: left;
+    vertical-align: middle;
+    text-indent: 0em;
+    color: rgba(0,0,0,1);
+    background-color: rgba(0,0,0,0);
+    text-decoration: none;
+    font-size: 1em;
+    font-family: sans-serif;
+    font-weight: normal;
+    margin: 0em;
+    padding: 0em;
+    list-style-type: none;
+	height: auto;
+	width: auto;
+	border: 0px solid rgba(0,0,0, 1);
+	word-wrap: break-word;
+}
+/*******************************************************************************
+*   Container
+*******************************************************************************/
+.horizontal
+{
+	align-items: flex-start;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+	align-items: flex-start;
+}
+.vertical
+{
+	display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+	align-items: stretch;
+}
+.section
+{
+	margin: 1em 0em 0em 0em;
+}
+/*******************************************************************************
+*   Widgets
+*******************************************************************************/
+p
+{
+	margin: 0.5em 0em 0em 0em;
+	text-align: justify;
+}
+h1
+{
+	margin: 0.5em 0em 0em 0em;
+	font-size: 1.5em;
+}
+h2
+{
+	margin: 0.5em 0em 0em 0em;
+	font-size: 1.2em;
+}
+a
+{
+	text-align: center;
+	vertical-align: center;
+	/*padding: 0.5em;*/
+	min-width: 5em;
+}
+.button
+{
+	border-radius: 0.5em;
+	background-color: rgba(255,255,255,0.05);
+	/*border: 1px solid rgba(255,255,255,0.1);*/
+	cursor: pointer;
+	min-width: 5em;
+	padding: 0.5em;
+	text-align: center;
+	vertical-align: center;
+}
+.button:hover
+{
+	background-color: rgba(255,255,255,0.2);
+}
+.button:active
+{
+    background-color: rgba(0,0,0,0.1);
+}
+.error
+{
+	border-radius: 0.5em;
+	background-color: rgba(255,0,0,0.2);
+	padding: 0.5em;
+	margin: 0.1em 0em 0em 0em;
+}
+.success
+{
+	border-radius: 0.5em;
+	background-color: rgba(0,255,0,0.2);
+	padding: 0.5em;
+	margin: 0.1em 0em 0em 0em;
+}
+.info
+{
+	border-radius: 0.5em;
+	background-color: rgba(0,0,255,0.2);
+	padding: 0.5em;
+	margin: 1em 0em 0em 0em;
+}
+.input
+{
+	border: 1px solid rgba(0,0,0, 0.2);
+	border-radius: 0.5em;
+	flex: 1;
+	min-width: 5em;
+	padding: 0.5em;
+}
+.input:hover
+{
+	background-color: rgba(255,255,255,0.1);
+}
+.input:active, .input:focus
+{
+	background-color: rgba(255,255,255,0.2);
+}
+.label
+{
+	/*min-width: 4em;*/
+	/*padding: 0em 0.5em;*/
+	/*align-self: center;*/
+}
+/*******************************************************************************
+*   Utility
+*******************************************************************************/
+.invisible
+{
+	display: none;
+}
+.extend
+{
+	flex: 9999;
+}
+.pressed, .selected
+{
+	box-shadow: inset 0 0 0.2em rgba(0,0,0, 1);
+	background-color: rgba(0,0,0,0.0);
+}
+.pressed:hover, .selected:hover
+{
+	box-shadow: inset 0 0 0.2em rgba(0,0,0, 1);
+	background-color: rgba(255,255,255,0.1);
+}
+.horizontal-spacer
+{
+	/*width: 9999em;*/
+	height: 0em;
+	background-color: rgba(255,255,255,0.2);
+}
+.highlighted
+{
+	border-radius: 0.5em;
+	background-color: rgba(255,255,255,0.05);
+	/*border: 1px solid rgba(255,255,255,0.1);*/
+	padding: 0.5em;
+	vertical-align: center;
+}
+.bottom
+{
+	
+	background-color: rgba(255,255,255,0.05);
+}
+/*******************************************************************************
+*   Body
+*******************************************************************************/
+body
+{
+	background-color: rgba(64,128,255, 1);
+	min-width: 20em;
+}
+/*******************************************************************************
+*   Header
+*******************************************************************************/
+header
+{
+	background-color: rgba(255,255,255,0.1);
+}
+	#main-nav
+	{
+		justify-content: center;
+		width: 100%;
+		font-size: 1.1em;
+		padding: 0.5em 0em 0em 0em;
+	}
+	#nav-options
+	{
+		justify-content: flex-end;
+		width: 100%;
+		font-size: 0.9em;
+		padding: 0em 0em 0.5em 0em;
+	}
+		#nav-options a
+		{
+			font-size: 0.9em;
+			padding: 0em 0.5em;
+			min-width: 0em;
+		}
+	header a
+	{
+		background-color: rgba(255,255,255,0.0);
+	}
+	header a:hover
+	{
+		background-color: rgba(255,255,255,0.0);
+		color: rgba(255,255,255,0.5);
+	}
+	header a:active
+	{
+		background-color: rgba(0,0,0,0.0);
+	}
+		
+/*******************************************************************************
+*   Footer
+*******************************************************************************/
+footer
+{
+	display: flex;
+	background-color: rgba(255,255,255,0.1);
+	margin: 0em 0em 0em 0em;
+	flex-direction: column;
+}
+	/* Sticky footer */
+	body
+	{
+		display: flex;
+		min-height: 100vh;
+		flex-direction: column;
+	}
+	.main
+	{
+		flex: 1;
+	}
+	footer p
+	{
+		align-self: center;
+	}
+/*******************************************************************************
+*   Middle
+*******************************************************************************/
+.main
+{
+	padding: 0em 1em;
+	max-width: 40em;
+	align-self: center;
+	width: 90%;
+}
+/*******************************************************************************
+*   Form
+*******************************************************************************/
+form .left
+{
+	min-width: 8em;
+}
