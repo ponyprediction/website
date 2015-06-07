@@ -2,6 +2,8 @@
 class DatabaseManager
 {
     private $database;
+    
+    
     public function __construct($login, $password, $databaseName)
 	{
         try
@@ -13,6 +15,7 @@ class DatabaseManager
 			die('Error : '.$e->getMessage());
         }
 	}
+	
 	
 	public function getText($textId)
 	{
@@ -29,6 +32,7 @@ class DatabaseManager
 			return false;
 	}
 	
+	
 	public function isUsernameAvailable($username)
 	{
 		$request = $this->database->prepare("SELECT username FROM users WHERE username = :username");
@@ -39,6 +43,7 @@ class DatabaseManager
 		else
 			return true;
 	}
+	
 	
 	public function isEmailAvailable($email)
 	{
@@ -51,6 +56,7 @@ class DatabaseManager
 			return true;
 	}
 	
+	
 	public function addUser($registrationDate, $username, $email, $hash, $confirmationId)
 	{
 		$request = $this->database->prepare("INSERT INTO users (registrationDate, username, email, hash, confirmationId) 
@@ -62,6 +68,7 @@ class DatabaseManager
 		$request->bindParam(':confirmationId', $confirmationId);
 		return $request->execute();
 	}
+	
 	
 	public function userMatchPassword($username, $password)
 	{
@@ -76,6 +83,7 @@ class DatabaseManager
 			return false;
 	}
 	
+	
 	public function getRealUsername($username)
 	{
 		$request = $this->database->prepare("SELECT username FROM users WHERE username = :username;");
@@ -86,6 +94,7 @@ class DatabaseManager
 		return $username;
 	}
 	
+	
 	public function getEmail($username)
 	{
 		$request = $this->database->prepare("SELECT email FROM users WHERE username = :username;");
@@ -94,6 +103,7 @@ class DatabaseManager
 		$data = $request->fetch();
 		return $data['email'];
 	}
+	
 	
 	public function confirmEmail($confirmationId)
 	{
@@ -112,16 +122,16 @@ class DatabaseManager
 		}
 		return $ok;
 	}
+	
+	
+	public function isConfirmed($username)
+	{
+	    $request = $this->database->prepare("SELECT confirmed FROM users WHERE username = :username;");
+	    $request->bindParam(':username', $username);
+		$request->execute();
+		$data = $request->fetch();
+		return $data['confirmed'];
+	}
 }
 ?>
-
-
-
-
-
-
-
-
-
-
 

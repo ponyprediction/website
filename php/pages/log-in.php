@@ -4,6 +4,8 @@ include_once('./php/pages/page.php');
 class LogInPage extends Page
 {
 	protected $previews;
+	
+	
     public function compute()
     {
         parent::compute();
@@ -11,11 +13,16 @@ class LogInPage extends Page
 			header('Location: '.Constants::$ROOT_URL.'/error/404');
 		$this->checkForm();
     }
+    
+    
 	public function checkForm()
 	{
+	    //
 		$this->errors['username-empty'] = false;
 		$this->errors['password-empty'] = false;
 		$this->errors['connection-failed'] = false;
+		$this->errors['not-confirmed'] = false;
+		//
 		$this->setText('username', '');
 		if(isset($_POST['username'])
 			&& isset($_POST['password']))
@@ -41,6 +48,11 @@ class LogInPage extends Page
 				$this->errors['connection-failed'] = true;
 				$ok = false;
 			}
+			if($ok && !$this->databaseManager->isConfirmed($username))
+			{
+				$this->errors['not-confirmed'] = true;
+				$ok = false;
+			}
 			// Confirmation
 			if($ok)
 			{
@@ -55,9 +67,10 @@ class LogInPage extends Page
 			}
 		}
 	}
+	
+	
 	public function getMiddle()
 	{
-		
 		$middle = '
 		<section id="sign-in" class="main">
 			<!--<h1>'.$this->getTextFromDatabase('log-in-h1').'</h1>-->
@@ -74,6 +87,7 @@ class LogInPage extends Page
 				
 				<input id="submit" name="submit" class="button extend" type="submit" value="'.$this->getTextFromDatabase('log-in').'" >
 				'.$this->getError('connection-failed').'
+				'.$this->getError('not-confirmed').'
 				
 			</form>
 		</section>
