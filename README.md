@@ -14,4 +14,5 @@ The default configuration is as follow :
 To fill the database you can use the following command :
 ```{r, engine='bash', count_lines}
 mysql -u USERNAME -p DATABASE < PATH_TO_WEBSITE/mysql/text.sql
+mysql -u USERNAME -p DATABASE < PATH_TO_WEBSITE/mysql/users.sql
 ```
