@@ -6,7 +6,7 @@
     text-align: left;
     vertical-align: middle;
     text-indent: 0em;
-    color: rgba(0,0,0,1);
+    color: rgba(0,64,0,1);
     background-color: rgba(0,0,0,0);
     text-decoration: none;
     font-size: 1em;
@@ -34,14 +34,19 @@
 }
 .vertical
 {
+    align-items: stretch;
 	display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-	align-items: stretch;
 }
 .section
 {
-	margin: 1em 0em 0em 0em;
+	margin: 0em 0em 0em 0em;
+}
+.cell 
+{
+    /*box-flex: 1;*/
+    /*flex: 1 1 auto; */
 }
 /*******************************************************************************
 *   Widgets
@@ -65,14 +70,15 @@ a
 {
 	text-align: center;
 	vertical-align: center;
-	/*padding: 0.5em;*/
-	min-width: 5em;
+}
+a:hover
+{
+	text-decoration: underline;
 }
 .button
 {
-	border-radius: 0.5em;
-	background-color: rgba(255,255,255,0.05);
-	/*border: 1px solid rgba(255,255,255,0.1);*/
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background-color: rgba(0,0,0,0.1);
 	cursor: pointer;
 	min-width: 5em;
 	padding: 0.5em;
@@ -108,28 +114,24 @@ a
 	padding: 0.5em;
 	margin: 1em 0em 0em 0em;
 }
+
+
 .input
 {
-	border: 1px solid rgba(0,0,0, 0.2);
-	border-radius: 0.5em;
-	flex: 1;
-	min-width: 5em;
+	border: 1px solid rgba(0, 0, 0, 0.2);
 	padding: 0.5em;
+	margin: 1em;
 }
 .input:hover
 {
-	background-color: rgba(255,255,255,0.1);
+	background-color: rgba(255,255,255,0.25);
 }
 .input:active, .input:focus
 {
-	background-color: rgba(255,255,255,0.2);
+	background-color: rgba(255,255,255,0.5);
 }
-.label
-{
-	/*min-width: 4em;*/
-	/*padding: 0em 0.5em;*/
-	/*align-self: center;*/
-}
+
+
 /*******************************************************************************
 *   Utility
 *******************************************************************************/
@@ -153,7 +155,6 @@ a
 }
 .horizontal-spacer
 {
-	/*width: 9999em;*/
 	height: 0em;
 	background-color: rgba(255,255,255,0.2);
 }
@@ -165,17 +166,12 @@ a
 	padding: 0.5em;
 	vertical-align: center;
 }
-.bottom
-{
-	
-	background-color: rgba(255,255,255,0.05);
-}
 /*******************************************************************************
 *   Body
 *******************************************************************************/
 body
 {
-	background-color: rgba(64,128,255, 1);
+	background-color: rgba(192,255,192, 1);
 	min-width: 20em;
 }
 /*******************************************************************************
@@ -183,25 +179,34 @@ body
 *******************************************************************************/
 header
 {
-	background-color: rgba(255,255,255,0.1);
+	border-bottom: 1px solid rgba(100,200,100, 1);
 }
+    #navs
+	{
+	    height:100%;
+	}
 	#main-nav
 	{
 		justify-content: center;
 		width: 100%;
-		font-size: 1.1em;
+		font-size: 1.5em;
 		padding: 0.5em 0em 0em 0em;
+		align-self: bottom;
 	}
+	    #main-nav a
+		{
+			padding: 0em 0.5em;
+			min-width: 0em;
+		}
 	#nav-options
 	{
-		justify-content: flex-end;
+		justify-content: center;
 		width: 100%;
 		font-size: 0.9em;
 		padding: 0em 0em 0.5em 0em;
 	}
 		#nav-options a
 		{
-			font-size: 0.9em;
 			padding: 0em 0.5em;
 			min-width: 0em;
 		}
@@ -209,7 +214,7 @@ header
 	{
 		background-color: rgba(255,255,255,0.0);
 	}
-	header a:hover
+	/*header a:hover
 	{
 		background-color: rgba(255,255,255,0.0);
 		color: rgba(255,255,255,0.5);
@@ -217,7 +222,14 @@ header
 	header a:active
 	{
 		background-color: rgba(0,0,0,0.0);
+	}*/
+	header img
+	{ 
+	    height: 5em;
+	    width: 5em;
+	    margin: 0.5em;
 	}
+	
 		
 /*******************************************************************************
 *   Footer
@@ -225,9 +237,11 @@ header
 footer
 {
 	display: flex;
-	background-color: rgba(255,255,255,0.1);
-	margin: 0em 0em 0em 0em;
+	background-color: rgba(192, 255, 192, 1);
+	margin: 0.5em 0em 0em 0em;
+	padding: 0.5em;
 	flex-direction: column;
+	border-top: 1px solid rgba(100, 200, 100, 1);
 }
 	/* Sticky footer */
 	body
@@ -240,9 +254,12 @@ footer
 	{
 		flex: 1;
 	}
+	/* */
 	footer p
 	{
 		align-self: center;
+		padding: 0em;
+		margin: 0em;
 	}
 /*******************************************************************************
 *   Middle
@@ -257,7 +274,8 @@ footer
 /*******************************************************************************
 *   Form
 *******************************************************************************/
-form .left
+/*form .left
 {
 	min-width: 8em;
-}
+}*/
+

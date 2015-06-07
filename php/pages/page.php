@@ -57,12 +57,12 @@ class Page {
         $this->loadCSS($this->root.'/css/'.$this->pageTitle.'.css');
 		$this->loadJavascript($this->root.'/scripts/'.$this->pageTitle.'.js');
 		$this->loadJavascript($this->root.'/scripts/constants.js');
-        $this->loadJavascript($this->root.'/scripts/change-color.js');
 		$this->addJavascript('CONSTANTS = new Constants("'. Constants::$ROOT_URL .'");');
+        /*$this->loadJavascript($this->root.'/scripts/change-color.js');
 		if(!isset($_SESSION['backgroundColor']))
 			$this->addJavascript('randomColor(64, 192);');
 	    else
-			$this->addJavascript('changeColor("' . $_SESSION['backgroundColor'] .'");');
+			$this->addJavascript('changeColor("' . $_SESSION['backgroundColor'] .'");');*/
 		$this->html['title'] = $this->getTextFromDatabase($this->pageTitle);
 	}
 	public function display()
@@ -90,33 +90,39 @@ echo'<!DOCTYPE html><html>
     public function getHeader()
     {
 		// Basic
-		$header = '<header class="vertical">
-            <nav id="main-nav" class="horizontal nav extend">
-				<a id="home" href="'.$this->root.'/home">'.$this->getTextFromDatabase('home').'</a>
-				<a id="home" href="'.$this->root.'/predictions">'.$this->getTextFromDatabase('predictions').'</a>
-			</nav>
-			<nav id="nav-options" class="horizontal extend">';
-				/*<a id="home" href="'.$this->root.'/home">'.$this->getTextFromDatabase('home').'</a>
-				<a id="home" href="'.$this->root.'/predictions">'.$this->getTextFromDatabase('predictions').'</a>*/
-			
-				if($_SESSION['user']->isConnected())
-				{
-					$header = $header .'
-						<a id="home" href="'.$this->root.'/account">'.$this->getTextFromDatabase('account').'</a>
-						<a id="home" href="'.$this->root.'/log-out">'.$this->getTextFromDatabase('log-out').'</a>
-					';
-				}
-				if(!$_SESSION['user']->isConnected())
-				{
-					$header = $header .'
-						<a id="home" href="'.$this->root.'/register">'.$this->getTextFromDatabase('register').'</a>
-						<a id="home" href="'.$this->root.'/log-in">'.$this->getTextFromDatabase('log-in').'</a>
-					';
-				}
-				$header = $header .'
-					<a id="home" href="'.$this->root.'/language">'.$this->getTextFromDatabase('language').'</a>
-					<a id="home" href="'.$this->root.'/options">'.$this->getTextFromDatabase('options').'</a>
-			</nav>
+		$header = '<header class="horizontal">
+		    <img class="cell" src="'.Constants::$ROOT_URL.'/images/logo.png" 
+		        alt="logo">
+		    <div id="navs" class="vertical extend">
+			    <div class="extend"></div>
+		        <nav id="main-nav" class="horizontal">
+				    <a id="home" href="'.$this->root.'/home">'.$this->getTextFromDatabase('home').'</a>
+				    <a id="home" href="'.$this->root.'/predictions">'.$this->getTextFromDatabase('predictions').'</a>
+			    </nav>
+			    <div class="extend"></div>
+			    <nav id="nav-options" class="horizontal">
+			        <a id="home" href="'.$this->root.'/language">'.$this->getTextFromDatabase('language').'</a>
+				    <a id="home" href="'.$this->root.'/options">'.$this->getTextFromDatabase('options').'</a>';
+				    if($_SESSION['user']->isConnected())
+				    {
+					    $header = $header .'
+						    <a id="home" href="'.$this->root.'/account">'.$this->getTextFromDatabase('account').'</a>
+						    <a id="home" href="'.$this->root.'/log-out">'.$this->getTextFromDatabase('log-out').'</a>
+					    ';
+				    }
+				    if(!$_SESSION['user']->isConnected())
+				    {
+					    $header = $header .'
+						    <a id="home" href="'.$this->root.'/register">'.$this->getTextFromDatabase('register').'</a>
+						    <a id="home" href="'.$this->root.'/log-in">'.$this->getTextFromDatabase('log-in').'</a>
+					    ';
+				    }
+				    $header = $header .'
+			    </nav>
+			    <div class="extend"></div>
+		    </div>
+	        <img class="cell" src="'.Constants::$ROOT_URL.'/images/logo-reversed.png" 
+		        alt="logo-reversed">
 		</header>';
 		return $header;
     }
@@ -128,7 +134,7 @@ echo'<!DOCTYPE html><html>
 	{
 		return'
 		<footer class="footer">
-			<p class="label">'.$this->getTextFromDatabase('footer').'</p>
+			<p>'.$this->getTextFromDatabase('footer').'</p>
 		</footer>
 		';
 	}

@@ -14,8 +14,7 @@ class AccountPage extends Page
     }
 	public function getMiddle()
 	{
-		$middle = '
-		<section id="account" class="main">
+		$middle = '<section id="account" class="main">
 			
 			<h2>'.$this->getText('username').'</h2>
 			<form id="change-username-form" action="" method="post" class="horizontal">
@@ -32,16 +31,14 @@ class AccountPage extends Page
 			<h2>'.$this->getTextFromDatabase('password').'</h2>
 			<form id="change-email-form" action="" method="post" class="horizontal">
 				<div class="vertical extend">
-					<input id="new-email" name="new-email" class="input extend left" placeholder="'.$this->getTextFromDatabase('current-password').'"/>
-					<input id="new-email" name="new-email" class="input extend left" placeholder="'.$this->getTextFromDatabase('new-password').'"/>
-					<input id="new-email" name="new-email" class="input extend left" placeholder="'.$this->getTextFromDatabase('confirmation').'"/>
+					<input id="current-password" name="current-password" class="input extend left" placeholder="'.$this->getTextFromDatabase('current-password').'"/>
+					<input id="new-password" name="new-password" class="input extend left" placeholder="'.$this->getTextFromDatabase('new-password').'"/>
+					<input id="new-password-2" name="new-password-2" class="input extend left" placeholder="'.$this->getTextFromDatabase('confirmation').'"/>
 				</div>
-				
-				<input id="submit-change-email" name="submit-change-email" class="button right bottom" type="submit" value="'.$this->getTextFromDatabase('change').'" >
+				<input id="submit-change-email" name="submit-change-email" class="button right" type="submit" value="'.$this->getTextFromDatabase('change').'" >
 			</form>
 			
-		</section>
-		';
+		</section>';
 		return $middle;
 	}
 }

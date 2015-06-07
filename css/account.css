@@ -9,19 +9,21 @@ form
 {
 	margin: 0em;
 	padding: 0em;
-	
+	/*height: 10em;*/
 }
 form .left
 {
 	min-width: 15em;
 	padding: 0.5em;
-	margin: 0.2em 0em 0em 0.5em;
+	margin: 0.25em 0em 0em 0em;
+	height: 100%;
+	
 }
 form .right
 {
 	flex: 1;
 	margin: 0.2em 0em 0em 0.5em;
 	padding: 0.5em;
-	align-self: center;
 	align-self: flex-end;
+	height: 100%;
 }
