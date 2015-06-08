@@ -2,10 +2,12 @@
 class DatabaseManager
 {
     private $database;
+    private $db;
     
     
     public function __construct($login, $password, $databaseName)
 	{
+	    // Mysql
         try
         {
 			$this->database = new PDO("mysql:host=localhost;dbname=".$databaseName, $login, $password);
@@ -14,22 +16,29 @@ class DatabaseManager
         {
 			die('Error : '.$e->getMessage());
         }
+        
+        // Mongo
+        $m = new MongoClient();
+        $this->db = $m->ponyprediction;
 	}
 	
 	
 	public function getText($textId)
 	{
-		$l = '';
+		$language = '';
 		if( $_SESSION['language'] == 'french')
-			$l = 'french';
-		$request = $this->database->prepare("SELECT $l FROM text WHERE textId = :textId");
-		$request->bindParam(':textId', $textId);
-		$request->execute();
-		$data = $request->fetch();
-		if($data)
-			return utf8_encode($data[$l]);
+		{
+			$language = 'french';
+		}
+        $text = $this->db->execute('return db.texts.find({"id":"'.$textId.'"}, {"'.$language.'":1}).toArray()')['retval'][0][$language];
+        if($text)
+        {
+		    return $text;
+		}
 		else
+		{
 			return false;
+		}
 	}
 	
 	

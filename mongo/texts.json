@@ -1,0 +1,54 @@
+{"id":"home","french":"Accueil"}
+{"id":"home-h1","french":"Bienvenue sur PonyPrediction !"}
+{"id":"register","french":"Inscription"}
+{"id":"log-in","french":"Connexion"}
+{"id":"log-out","french":"D\u00e9connexion "}
+{"id":"footer","french":"Copyright \u00a9 2015 PonyPrediction"}
+{"id":"home-p-0","french":"Gr\u00e2ce \u00e0 la puissance des r\u00e9seaux de neurones alli\u00e9e aux performances du calcul distribu\u00e9les courses hippiques n'auront plus de secret pour vous."}
+{"id":"home-h2-1","french":"Calcul distribu\u00e9 ?"}
+{"id":"home-p-1","french":"Notre architecture unique s'appuie sur la participation de tous pour la r\u00e9ussite de chacun. "}
+{"id":"home-neural-network-h2","french":"R\u00e9seaux de neurones ?"}
+{"id":"home-neural-network-p-1","french":"Vouloir pr\u00e9voir le r\u00e9sultats de courses hippique c'est tr\u00e8s bienmais comment proc\u00e9der ? C'est la premi\u00e8re question qu'on s'est pos\u00e9 chez PonyPrediction. Et comme on est plut\u00f4t \u00e9conome de nos moyenson s'est dit qu'il serait malin de faire travailler l'ordinateur \u00e0 notre place. Quoi de mieux que les r\u00e9seaux de neurones pour cela ? Pas grand chose \u00e0 vrai dire. Mis \u00e0 part peut-\u00eatre faire appel aux statisticiens les plus renomm\u00e9s. Mais m\u00eame eux font appel \u00e0 des machines. Alors tant qu'\u00e0 faireautant se passer des interm\u00e9diraires."}
+{"id":"register-h1","french":"Je veux m'inscrire !"}
+{"id":"register-p-0","french":"Pour s'inscrirec'est tr\u00e8s simple : il suffit de remplir tous les champs ci-dessous."}
+{"id":"username","french":"Nom d'utilisateur"}
+{"id":"password","french":"Mot de passe"}
+{"id":"confirmation","french":"Confirmation"}
+{"id":"email","french":"Email"}
+{"id":"username-empty","french":"Vous ne pouvez pas laisser ce champs vide"}
+{"id":"email-1-empty","french":"Il est n\u00e9cessaire de renseigner un email"}
+{"id":"email-2-empty","french":"Vous devez confirmer votre email"}
+{"id":"password-1-empty","french":"Un mot de passe est n\u00e9cessaire pour prot\u00e9ger votre compte"}
+{"id":"password-2-empty","french":"Veuillez confirmer votre mot de passe"}
+{"id":"password-different","french":"Il semble que les mots de passes sont diff\u00e9rents "}
+{"id":"email-different","french":"Les email sont diff\u00e9rents"}
+{"id":"email-1-invalid","french":"Ceci n'est pas un email valide"}
+{"id":"email-2-invalid","french":"Cela n'est pas un email valide"}
+{"id":"home-neural-network-p-2","french":"C'est l\u00e0 qu'interviennent les r\u00e9seaux des neurones. Comme le nom le sugg\u00e8reil s'agit de s'inspirer du cerveau humain pour r\u00e9soudre un probl\u00e8memais de mani\u00e8re informatique."}
+{"id":"username-unavailable","french":"Ce nom d'utilisateur est d\u00e9j\u00e0 utilis\u00e9"}
+{"id":"email-unavailable","french":"Cet email est d\u00e9j\u00e0 utilis\u00e9"}
+{"id":"registration-successful","french":"Hourra ! Vous \u00eates maintenant un utilisateur de PonyPrediction. Enfin presque. Il vous reste juste \u00e0 confirmer votre compte. Un email vous a \u00e9t\u00e9 envoy\u00e9 \u00e0 cet effet. Soyer s\u00fbr de v\u00e9rifier les spamson ne sait jamais."}
+{"id":"error","french":"Erreur"}
+{"id":"404","french":"Erreur 404 : la page que vous demandez n'existe pas. Tristesse :'("}
+{"id":"log-in-h1","french":"Je me connecte "}
+{"id":"password-empty","french":"Il faut un mot de passe pour se connecter"}
+{"id":"connection-failed","french":"Impossible de se connecter. Peut-\u00eatre que ce n'est pas le bon mot de passe. Ou alors vous vous \u00eates tromp\u00e9 d'identifiant."}
+{"id":"just-log-in","french":"Bien le bonjour ! Heureux de vous revoir."}
+{"id":"just-log-out","french":"Au revoir. Vous nous manquerez..."}
+{"id":"404-title","french":"Erreur 404"}
+{"id":"account","french":"Compte "}
+{"id":"language","french":"Langue"}
+{"id":"options","french":"Options"}
+{"id":"predictions","french":"Pr\u00e9visions"}
+{"id":"change","french":"Modifier"}
+{"id":"new-username","french":"Nouveau nom d'utilisateur"}
+{"id":"new-email","french":"Nouvel email"}
+{"id":"current-password","french":"Mot de passe actuel"}
+{"id":"new-password","french":"Nouveau mot de passe"}
+{"id":"registration-failed","french":"Nous n'avons pas r\u00e9ussi \u00e0 vous enregistrer dans notre base de donn\u00e9es. Peut-\u00eatre qu'en r\u00e9essayant \u00e7a marchera."}
+{"id":"send-email-failed","french":"Impossible de vous envoyer l'email de confirmation. \u00c9trange..."}
+{"id":"email-confirmation-subject","french":"PonyPrediction : validation de compte"}
+{"id":"email-confirmation-message","french":"Bonjour USERNAME,\r\n\r\nBienvenue chez PonyPrediction !\r\n\r\nPour valider votre emailc'est par l\u00e0 : URLEMAIL\r\n\r\nUne fois que vous aurez valid\u00e9 votre emailvous pourrez vous connecter en allant ici : URLACCOUNT"}
+{"id":"confirmation-sucessful","french":"Hourra ! Vous \u00eates officiellement membre de PonyPrediction ! \u00c7a se f\u00eate. Et si vous vous connectiez ?"}
+{"id":"confirmation-failed","french":"D\u00e9sol\u00e9impossible de confirmer quoi que ce soit. Peut-\u00eatre que le lien est invalide. Ou bien ce compte a d\u00e9j\u00e0 \u00e9t\u00e9 confirmer. Derni\u00e8re hypoth\u00e8se : c'est nous qui sommes mauvais. Dans tous les casvous pouvez toujours r\u00e9essayer plus tard. "}
+{"id":"not-confirmed","french":"Il semble que vous n'ayez pas confirm\u00e9 votre email."}
