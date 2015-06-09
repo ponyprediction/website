@@ -4,7 +4,7 @@ class DatabaseManager
     private $db;
     
     
-    public function __construct($login, $password, $databaseName)
+    public function __construct()
 	{
         // Mongo
         $m = new MongoClient();
