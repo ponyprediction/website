@@ -2,7 +2,7 @@
 
 include_once('./php/other/database-manager.php');
 include_once('./php/other/user.php');
-include_once('../website-conf.php');
+include_once('../website.conf');
 
 class Page {
 	protected $html;
