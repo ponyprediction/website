@@ -48,7 +48,7 @@ class Page {
 		$_SESSION['just-log-in'] = false;
 		$_SESSION['just-log-out'] = false;
 	    //  DatabaseManager
-		$this->databaseManager = new DatabaseManager(Constants::$DATABASE_LOGIN, Constants::$DATABASE_PASSWORD, Constants::$DATABASE_NAME);
+		$this->databaseManager = new DatabaseManager();
         //  Root directory.
         $this->root = Constants::$ROOT_URL;
 		$this->rootDir = getcwd();
