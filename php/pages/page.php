@@ -97,9 +97,6 @@ class Page
             		' . $this->html['footer'] . '
             	</body>
             </html>';
-        /**/
-        echo $html;
-        /*/
         $tidy = new Tidy();
         $options = array(
                 'indent' => true,
@@ -118,7 +115,6 @@ class Page
                 'new-inline-tags' => 'audio canvas command datalist embed keygen mark meter output progress time video wbr');
         $tidy->parseString($html, $options);
         echo $tidy;
-        /***/
     }
 
 
