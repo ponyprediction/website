@@ -39,7 +39,6 @@
 {"id":"account","french":"Compte "}
 {"id":"language","french":"Langue"}
 {"id":"options","french":"Options"}
-{"id":"predictions","french":"Pr\u00e9visions"}
 {"id":"change","french":"Modifier"}
 {"id":"new-username","french":"Nouveau nom d'utilisateur"}
 {"id":"new-email","french":"Nouvel email"}
@@ -52,3 +51,5 @@
 {"id":"confirmation-sucessful","french":"Hourra ! Vous \u00eates officiellement membre de PonyPrediction ! \u00c7a se f\u00eate. Et si vous vous connectiez ?"}
 {"id":"confirmation-failed","french":"D\u00e9sol\u00e9impossible de confirmer quoi que ce soit. Peut-\u00eatre que le lien est invalide. Ou bien ce compte a d\u00e9j\u00e0 \u00e9t\u00e9 confirmer. Derni\u00e8re hypoth\u00e8se : c'est nous qui sommes mauvais. Dans tous les casvous pouvez toujours r\u00e9essayer plus tard. "}
 {"id":"not-confirmed","french":"Il semble que vous n'ayez pas confirm\u00e9 votre email."}
+{"id":"predictions","french":"Pr\u00e9visions"}
+{"id":"predictions-for","french":"Prévisions pour"}
