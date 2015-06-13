@@ -97,7 +97,7 @@ class Page
             		' . $this->html['footer'] . '
             	</body>
             </html>';
-        /***/
+        /**/
         echo $html;
         /*/
         $tidy = new Tidy();
