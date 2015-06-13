@@ -19,6 +19,11 @@ RewriteBase /
 RewriteCond %{ENV:REDIRECT_STATUS} 200
 RewriteRule ^ - [L]
 
+# Predictions
+RewriteCond %{QUERY_STRING} ^page=predictions&date=([0-9]{4}-[0-9]{2}-[0-9]{2})$
+RewriteRule ^index.php$ predictions/%1? [R=301,NE,L]
+RewriteRule ^predictions/([0-9]{4}-[0-9]{2}-[0-9]{2})$ index.php?page=predictions&date=$1 [L]
+
 # Confirmation
 RewriteCond %{QUERY_STRING} ^page=confirmation&confirmation=(.*)$         
 RewriteRule ^index.php$ confirmation/%1? [R=301,NE,L]

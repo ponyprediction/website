@@ -29,7 +29,14 @@ class PredictionsPage extends Page
 
     private function initDate()
     {
-        $this->date = "2014-01-01";
+    	if(isset($_GET['date']))
+    	{
+    		$this->date = (string) $_GET['date'];
+    	}
+    	else
+    	{
+    		$this->date = date("Y-m-d");
+    	}
         $this->setText('date', $this->date);
     }
 
