@@ -41,7 +41,6 @@ class PredictionsPage extends Page
         {
             $this->date = date("Y-m-d");
         }
-        $this->date = "2014-01-01";
         $this->setText('date', $this->date);
     }
 
