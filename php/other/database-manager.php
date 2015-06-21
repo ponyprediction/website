@@ -185,6 +185,18 @@ class DatabaseManager
         $predictions = $result['retval'];
         return $predictions;
     }
+    
+    
+    public function getTeamsFromRace($id)
+    {
+        $ok = true;
+        $request = 'return db.races.find({"id":id}).toArray();';
+        $scope = array(
+                "id" => (string) $id);
+        $result = $this->db->execute(new MongoCode($request, $scope));
+        $teams = $result['retval'][0]['teams'];
+        return $teams;
+    }
 }
 ?>
 
