@@ -178,15 +178,15 @@ class DatabaseManager
     public function getPredictions($date)
     {
         $ok = true;
-        $request = 'return db.predictions.find({"date":date}).toArray();';
+        $request = 'return db.predictions.find({"date":date}).sort({"id": 1} ).toArray();';
         $scope = array(
                 "date" => (string) $date);
         $result = $this->db->execute(new MongoCode($request, $scope));
         $predictions = $result['retval'];
         return $predictions;
     }
-    
-    
+
+
     public function getTeamsFromRace($id)
     {
         $ok = true;
@@ -195,6 +195,18 @@ class DatabaseManager
                 "id" => (string) $id);
         $result = $this->db->execute(new MongoCode($request, $scope));
         $teams = $result['retval'][0]['teams'];
+        return $teams;
+    }
+
+
+    public function getWinningsFromRace($id)
+    {
+        $ok = true;
+        $request = 'return db.races.find({"id":id},{"winnings":1}).toArray();';
+        $scope = array(
+                "id" => (string) $id);
+        $result = $this->db->execute(new MongoCode($request, $scope));
+        $teams = $result['retval'][0]['winnings'];
         return $teams;
     }
 }
