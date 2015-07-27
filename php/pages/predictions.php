@@ -20,13 +20,15 @@ class PredictionsPage extends Page
         $this->setText('ratio', $this->getTextFromDatabase('ratio'));
         $this->setText('single-show', $this->getTextFromDatabase('single-show'));
         
-        $this->setText('participants', 
-                $this->getTextFromDatabase('participants'));
+        $this->setText('pony-count', 
+                $this->getTextFromDatabase('pony-count'));
         $this->setText('races', $this->getTextFromDatabase('races'));
         $this->setText('winnings', $this->getTextFromDatabase('winnings'));
         $this->setText('earnings', $this->getTextFromDatabase('earnings'));
         $this->setText('average-earnings', 
                 $this->getTextFromDatabase('average-earnings'));
+                $this->setText('success', 
+                $this->getTextFromDatabase('success'));
         
         $this->initDate();
         $this->initPredictions();
@@ -122,40 +124,48 @@ class PredictionsPage extends Page
             $moneyData[$rank]['races'] = $moneyData[$rank]['races'] + 1;
             $moneyData[$rank]['winnings'] = $moneyData[$rank]['winnings'] +
                      $winningToAdd;
+            if ($winningToAdd)
+            {
+                $moneyData[0]['success'] = $moneyData[0]['success'] + 1;
+                $moneyData[$rank]['success'] = $moneyData[$rank]['success'] + 1;
+            }
             
             $table = $table . '</table>';
             $this->predictions = $this->predictions . '<h2>' . $prediction['id'] .
                      '</h2>' . $table;
         }
-        
+        //
         if ($moneyData[0]['races'])
         {
-            
-            $this->money = '<table> <tr> <th>' . $this->getText('participants') .
+            $this->money = '<table> <tr> <th>' . $this->getText('pony-count') .
                      '</th> <th>' . $this->getText('races') . '</th> <th>' .
                      $this->getText('winnings') . '</th> <th>' .
                      $this->getText('earnings') . '</th> <th>' .
-                     $this->getText('average-earnings') . '</th></tr>';
-            
-            $this->money = $this->money . '<tr> <td></td> <td>' .
-                     $moneyData[0]['races'] . '</td> <td>' .
-                     number_format($moneyData[0]['winnings'],2) . '</td> <td>' .
-                     number_format(($moneyData[0]['winnings'] - $moneyData[0]['races']),2) .
-                     '</td> <td>' . number_format(
-                            ($moneyData[0]['winnings'] - $moneyData[0]['races']) /
-                             $moneyData[0]['races'], 2) . '</td> </tr>';
-            
-            for ($i = 1; $i < 21; $i ++)
+                     $this->getText('average-earnings') . '</th> <th>' .
+                     $this->getText('success') . '</th> <th>' .
+                     $this->getText('ratio') . '</th> </tr>';
+            //
+            for ($i = 0; $i < 21; $i ++)
             {
                 if ($moneyData[$i]['races'])
                 {
+                    $a = $moneyData[$i]['races'];
+                    $b = number_format($moneyData[$i]['winnings'], 2);
+                    $c = number_format(
+                            ($moneyData[$i]['winnings'] - $moneyData[$i]['races']), 
+                            2);
+                    $d = number_format(
+                            ($moneyData[$i]['winnings'] - $moneyData[$i]['races']) /
+                                     $moneyData[$i]['races'], 2);
+                    $e = $moneyData[$i]['success'];
+                    $f = number_format(
+                            $moneyData[$i]['success'] / $moneyData[$i]['races'], 
+                            2);
+                    if(!$i)
+                        $i = "";
                     $this->money = $this->money . '<tr> <td>' . $i . '</td> <td>' .
-                             $moneyData[$i]['races'] . '</td> <td>' .
-                             number_format($moneyData[$i]['winnings'],2) . '</td> <td>' .
-                             number_format(($moneyData[$i]['winnings'] -
-                             $moneyData[$i]['races']),2) . '</td> <td>' . number_format(($moneyData[$i]['winnings'] -
-                             $moneyData[$i]['races']) / $moneyData[$i]['races'],2) .
-                             '</td> </tr>';
+                             $a . '</td> <td>' . $b . '</td> <td>' . $c .
+                             '</td> <td>' . $d . '</td> <td>' . $e . '</td><td>' . $f . '</td></tr>';
                 }
             }
             $this->money = $this->money . '</table>';
