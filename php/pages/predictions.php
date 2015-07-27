@@ -4,6 +4,8 @@ include_once ('./php/pages/page.php');
 class PredictionsPage extends Page
 {
     private $date;
+    private $yesterday;
+    private $tomorrow;
     private $predictions;
     private $totalWinnings;
     private $raceCount;
@@ -25,16 +27,18 @@ class PredictionsPage extends Page
 
     public function getMiddle()
     {
-        $middle = '<section id="predictions" class="main">
-			<h1>' .
-                 $this->getTextFromDatabase("predictions-for") . ' ' .
-                 $this->getText('date') . '
-            </h1>'.
-            '<p>Bénéfices ' . ($this->totalWinnings - $this->raceCount) . '</p>' .
-            '<p>Bénéfices moyen ' . ($this->totalWinnings - $this->raceCount) / $this->raceCount . '</p>' .
-            '<p>Courses ' . $this->raceCount . '</p>' .
-            '<p>Gains ' . $this->totalWinnings . '</p>' .
-                 $this->predictions . '
+        $linkYesterday = '<a href="'.$this->root.'/predictions/'.$this->getText('yesterday').'">←</a>';
+        $linkTomorrow = '<a href="'.$this->root.'/predictions/'.$this->getText('tomorrow').'">→</a>';
+        $middle = '<section id="predictions" class="main"> 
+			<h1>'.$linkYesterday . ' '.
+                 $this->getText('date') . ' '.$linkTomorrow.'
+            </h1>' . 
+            '<p>Bénéfices ' .
+                 ($this->totalWinnings - $this->raceCount) . '</p>' .
+                 '<p>Bénéfices moyen ' .
+                 ($this->totalWinnings - $this->raceCount) / $this->raceCount .
+                 '</p>' . '<p>Courses ' . $this->raceCount . '</p>' . '<p>Gains ' .
+                 $this->totalWinnings . '</p>' . $this->predictions . '
 		</section>';
         return $middle;
     }
@@ -50,7 +54,11 @@ class PredictionsPage extends Page
         {
             $this->date = date("Y-m-d");
         }
+        $this->yesterday = date("Y-m-d",strtotime("-1 days",strtotime($this->date)));
+        $this->tomorrow = date("Y-m-d",strtotime("+1 days",strtotime($this->date)));
         $this->setText('date', $this->date);
+        $this->setText('yesterday', $this->yesterday);
+        $this->setText('tomorrow', $this->tomorrow);
     }
 
 
@@ -64,8 +72,8 @@ class PredictionsPage extends Page
         foreach ($arrayPredictions as $prediction)
         {
             $this->raceCount ++;
-            $table = '<table> <tr> <th>' . $this->getText('pronostic') . '</th> <th>' .
-                     $this->getText('number') . '</th> <th>' .
+            $table = '<table> <tr> <th>' . $this->getText('pronostic') .
+                     '</th> <th>' . $this->getText('number') . '</th> <th>' .
                      $this->getText('ratio') . '</th> <th>' .
                      $this->getText('morning-odds') . '</th> <th>' .
                      $this->getText('single-show') . '</th>.</tr>';
@@ -83,8 +91,6 @@ class PredictionsPage extends Page
                 
                 $ratio = number_format($output['ratio'], 6);
                 
-                
-                
                 if (isset($teams[$id - 1]['odds']))
                 {
                     $rank ++;
@@ -97,7 +103,7 @@ class PredictionsPage extends Page
                             if ($rank == 1)
                             {
                                 $this->totalWinnings = $this->totalWinnings +
-                                $winning;
+                                         $winning;
                             }
                         }
                     }
