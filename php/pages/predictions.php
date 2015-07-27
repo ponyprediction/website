@@ -7,8 +7,7 @@ class PredictionsPage extends Page
     private $yesterday;
     private $tomorrow;
     private $predictions;
-    private $totalWinnings;
-    private $raceCount;
+    private $money;
 
 
     public function compute()
@@ -20,6 +19,15 @@ class PredictionsPage extends Page
         $this->setText('number', $this->getTextFromDatabase('number'));
         $this->setText('ratio', $this->getTextFromDatabase('ratio'));
         $this->setText('single-show', $this->getTextFromDatabase('single-show'));
+        
+        $this->setText('participants', 
+                $this->getTextFromDatabase('participants'));
+        $this->setText('races', $this->getTextFromDatabase('races'));
+        $this->setText('winnings', $this->getTextFromDatabase('winnings'));
+        $this->setText('earnings', $this->getTextFromDatabase('earnings'));
+        $this->setText('average-earnings', 
+                $this->getTextFromDatabase('average-earnings'));
+        
         $this->initDate();
         $this->initPredictions();
     }
@@ -27,18 +35,13 @@ class PredictionsPage extends Page
 
     public function getMiddle()
     {
-        $linkYesterday = '<a href="'.$this->root.'/predictions/'.$this->getText('yesterday').'">←</a>';
-        $linkTomorrow = '<a href="'.$this->root.'/predictions/'.$this->getText('tomorrow').'">→</a>';
+        $linkYesterday = '<a href="' . $this->root . '/predictions/' .
+                 $this->getText('yesterday') . '">←</a>';
+        $linkTomorrow = '<a href="' . $this->root . '/predictions/' .
+                 $this->getText('tomorrow') . '">→</a>';
         $middle = '<section id="predictions" class="main"> 
-			<h1>'.$linkYesterday . ' '.
-                 $this->getText('date') . ' '.$linkTomorrow.'
-            </h1>' . 
-            '<p>Bénéfices ' .
-                 ($this->totalWinnings - $this->raceCount) . '</p>' .
-                 '<p>Bénéfices moyen ' .
-                 ($this->totalWinnings - $this->raceCount) / $this->raceCount .
-                 '</p>' . '<p>Courses ' . $this->raceCount . '</p>' . '<p>Gains ' .
-                 $this->totalWinnings . '</p>' . $this->predictions . '
+			<h1>' . $linkYesterday . ' ' . $this->getText('date') . ' ' . $linkTomorrow . '
+            </h1>' . $this->money . $this->predictions . '
 		</section>';
         return $middle;
     }
@@ -54,8 +57,10 @@ class PredictionsPage extends Page
         {
             $this->date = date("Y-m-d");
         }
-        $this->yesterday = date("Y-m-d",strtotime("-1 days",strtotime($this->date)));
-        $this->tomorrow = date("Y-m-d",strtotime("+1 days",strtotime($this->date)));
+        $this->yesterday = date("Y-m-d", 
+                strtotime("-1 days", strtotime($this->date)));
+        $this->tomorrow = date("Y-m-d", 
+                strtotime("+1 days", strtotime($this->date)));
         $this->setText('date', $this->date);
         $this->setText('yesterday', $this->yesterday);
         $this->setText('tomorrow', $this->tomorrow);
@@ -65,36 +70,36 @@ class PredictionsPage extends Page
     private function initPredictions()
     {
         $ok = true;
-        $this->totalWinnings = 0;
-        $this->raceCount = 0;
+        $moneyData = "";
         $this->predictions = "";
         $arrayPredictions = $this->databaseManager->getPredictions($this->date);
+        
         foreach ($arrayPredictions as $prediction)
         {
-            $this->raceCount ++;
             $table = '<table> <tr> <th>' . $this->getText('pronostic') .
                      '</th> <th>' . $this->getText('number') . '</th> <th>' .
                      $this->getText('ratio') . '</th> <th>' .
                      $this->getText('morning-odds') . '</th> <th>' .
-                     $this->getText('single-show') . '</th>.</tr>';
+                     $this->getText('single-show') . '</th></tr>';
             
             $teams = $this->databaseManager->getTeamsFromRace($prediction['id']);
             $winnings = $this->databaseManager->getWinningsFromRace(
                     $prediction['id']);
             $singleShow = $winnings['singleShow'];
-            $rank = 0;
             
+            $rank = 0;
+            $winningToAdd = 0;
             foreach ($prediction['outputs'] as $output)
             {
                 $id = $output['id'];
                 $odds = number_format($teams[$id - 1]['odds'], 1);
                 
                 $ratio = number_format($output['ratio'], 6);
+                $winning = "";
                 
                 if (isset($teams[$id - 1]['odds']))
                 {
                     $rank ++;
-                    $winning = "";
                     foreach ($singleShow as $v)
                     {
                         if ($v['id'] == $id)
@@ -102,8 +107,7 @@ class PredictionsPage extends Page
                             $winning = $v['winning'];
                             if ($rank == 1)
                             {
-                                $this->totalWinnings = $this->totalWinnings +
-                                         $winning;
+                                $winningToAdd = $winning;
                             }
                         }
                     }
@@ -113,9 +117,48 @@ class PredictionsPage extends Page
                              '</td> <td>' . $winning . '</td></tr>';
                 }
             }
+            $moneyData[0]['races'] = $moneyData[0]['races'] + 1;
+            $moneyData[0]['winnings'] = $moneyData[0]['winnings'] + $winningToAdd;
+            $moneyData[$rank]['races'] = $moneyData[$rank]['races'] + 1;
+            $moneyData[$rank]['winnings'] = $moneyData[$rank]['winnings'] +
+                     $winningToAdd;
+            
             $table = $table . '</table>';
             $this->predictions = $this->predictions . '<h2>' . $prediction['id'] .
                      '</h2>' . $table;
+        }
+        
+        if ($moneyData[0]['races'])
+        {
+            
+            $this->money = '<table> <tr> <th>' . $this->getText('participants') .
+                     '</th> <th>' . $this->getText('races') . '</th> <th>' .
+                     $this->getText('winnings') . '</th> <th>' .
+                     $this->getText('earnings') . '</th> <th>' .
+                     $this->getText('average-earnings') . '</th></tr>';
+            
+            $this->money = $this->money . '<tr> <td></td> <td>' .
+                     $moneyData[0]['races'] . '</td> <td>' .
+                     number_format($moneyData[0]['winnings'],2) . '</td> <td>' .
+                     number_format(($moneyData[0]['winnings'] - $moneyData[0]['races']),2) .
+                     '</td> <td>' . number_format(
+                            ($moneyData[0]['winnings'] - $moneyData[0]['races']) /
+                             $moneyData[0]['races'], 2) . '</td> </tr>';
+            
+            for ($i = 1; $i < 21; $i ++)
+            {
+                if ($moneyData[$i]['races'])
+                {
+                    $this->money = $this->money . '<tr> <td>' . $i . '</td> <td>' .
+                             $moneyData[$i]['races'] . '</td> <td>' .
+                             number_format($moneyData[$i]['winnings'],2) . '</td> <td>' .
+                             number_format(($moneyData[$i]['winnings'] -
+                             $moneyData[$i]['races']),2) . '</td> <td>' . number_format(($moneyData[$i]['winnings'] -
+                             $moneyData[$i]['races']) / $moneyData[$i]['races'],2) .
+                             '</td> </tr>';
+                }
+            }
+            $this->money = $this->money . '</table>';
         }
     }
 }

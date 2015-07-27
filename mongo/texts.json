@@ -59,3 +59,10 @@
 {"id":"ratio","french":"Ratio"}
 {"id":"pronostic","french":"Pronostic"}
 {"id":"single-show","french":"Simple placé"}
+
+
+{"id":"participants","french":"Participants"}
+{"id":"races","french":"Courses"}
+{"id":"winnings","french":"Gains"}
+{"id":"earnings","french":"Bénéfices"}
+{"id":"average-earnings","french":"Bénéfice moyen"}
